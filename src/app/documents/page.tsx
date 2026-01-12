@@ -196,12 +196,12 @@ export default function DocumentsPage() {
     : documents.filter((doc) => doc.category === activeCategory);
 
   return (
-    <div className="min-h-screen py-20 px-6">
+    <div className="min-h-screen py-20 px-4 sm:px-6 overflow-x-hidden">
       {/* Background effects */}
       <div className="fixed inset-0 gradient-mesh -z-10" />
       <div className="fixed inset-0 noise -z-10" />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto overflow-hidden">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50 mb-6">
@@ -244,12 +244,12 @@ export default function DocumentsPage() {
               {/* Top accent on hover */}
               <div className="absolute -top-px left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-primary/0 group-hover:via-primary/50 to-transparent transition-all duration-300" />
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors duration-300">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors duration-300">
                   {doc.icon}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-200">
+                <div className="flex-1 min-w-0 overflow-hidden">
+                  <h3 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-200 truncate">
                     {doc.title}
                   </h3>
                   <p className="text-sm text-muted-foreground line-clamp-2">
@@ -258,7 +258,7 @@ export default function DocumentsPage() {
                 </div>
                 <svg
                   viewBox="0 0 24 24"
-                  className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-all duration-200 group-hover:translate-x-1"
+                  className="w-5 h-5 shrink-0 text-muted-foreground group-hover:text-primary transition-all duration-200 group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.5"
