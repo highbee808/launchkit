@@ -25,23 +25,21 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center transition-all duration-500 ease-out ${
+      className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center transition-transform duration-300 ease-out ${
         isVisible
-          ? "translate-y-4 opacity-100"
-          : "-translate-y-full opacity-0"
+          ? "translate-y-4"
+          : "-translate-y-full"
       }`}
     >
       {/* Pill-shaped floating container */}
       <nav
-        className={`
+        className="
           relative flex items-center gap-8 px-2 py-2
           rounded-full
-          bg-[hsl(0_0%_8%/0.85)] backdrop-blur-xl
+          bg-[hsl(0_0%_8%/0.9)] backdrop-blur-md
           border border-[hsl(0_0%_100%/0.08)]
-          shadow-[0_8px_32px_-8px_hsl(0_0%_0%/0.5),inset_0_1px_0_0_hsl(0_0%_100%/0.04)]
-          transition-all duration-500
-          ${isVisible ? "scale-100" : "scale-95"}
-        `}
+          shadow-[0_4px_20px_-4px_hsl(0_0%_0%/0.4)]
+        "
       >
         {/* Subtle green accent line at bottom */}
         <div className="absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
@@ -49,7 +47,8 @@ export function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 pl-2 pr-4 py-1 rounded-full transition-all duration-200 hover:bg-white/5 group"
+          prefetch={true}
+          className="flex items-center gap-2.5 pl-2 pr-4 py-1 rounded-full transition-colors duration-150 hover:bg-white/5 group"
         >
           <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center transition-transform duration-200 group-hover:scale-110">
             <svg
@@ -81,9 +80,10 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={true}
                 className={`
                   relative px-4 py-2 rounded-full text-sm font-medium
-                  transition-all duration-200
+                  transition-colors duration-150
                   ${isActive
                     ? "text-primary bg-primary/10"
                     : "text-muted-foreground hover:text-foreground hover:bg-white/5"
@@ -102,13 +102,13 @@ export function Header() {
         {/* CTA Button */}
         <Link
           href="/documents"
+          prefetch={true}
           className="
             flex items-center gap-2 px-4 py-2 rounded-full
             bg-primary text-primary-foreground
             text-sm font-semibold
-            transition-all duration-200
-            hover:bg-primary/90 hover:scale-[1.02]
-            active:scale-[0.98]
+            transition-colors duration-150
+            hover:bg-primary/90
           "
         >
           <svg

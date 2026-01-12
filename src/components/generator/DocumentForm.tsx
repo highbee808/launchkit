@@ -100,7 +100,7 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
         {step === 1 ? (
           <Link
             href="/documents"
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors press-scale"
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -109,8 +109,14 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
           </Link>
         ) : (
           <button
-            onClick={() => setStep(step - 1)}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors press-scale"
+            onClick={() => {
+              if (step === 3 && !needsDataCollection) {
+                setStep(1);
+              } else {
+                setStep(step - 1);
+              }
+            }}
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -204,7 +210,7 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
             <Button
               onClick={handleContinueFromStep1}
               disabled={!formData.companyName || !formData.websiteUrl}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-all duration-300 press-scale disabled:opacity-50"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-colors duration-200 disabled:opacity-50"
             >
               Continue
               <svg viewBox="0 0 24 24" className="w-5 h-5 ml-2" fill="none" stroke="currentColor" strokeWidth="2">
@@ -231,7 +237,7 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
                     onClick={() => toggleDataType(type.id)}
                     className={`
                       flex items-center gap-2.5 p-3 sm:p-4 rounded-xl border
-                      transition-all duration-200 text-left press-scale
+                      transition-all duration-200 text-left
                       ${isSelected
                         ? "bg-primary/10 border-primary/30 text-foreground"
                         : "bg-secondary/20 border-border/50 text-muted-foreground hover:bg-secondary/40 hover:border-border"
@@ -263,7 +269,7 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
             <Button
               onClick={() => setStep(3)}
               disabled={formData.dataCollected.length === 0}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-all duration-300 press-scale disabled:opacity-50"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-colors duration-200 disabled:opacity-50"
             >
               Continue
               <svg viewBox="0 0 24 24" className="w-5 h-5 ml-2" fill="none" stroke="currentColor" strokeWidth="2">
@@ -318,7 +324,7 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
 
             <Button
               onClick={handleGenerate}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-all duration-300 press-scale"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-colors duration-200"
             >
               <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
                 <path d="M8 5.14v14l11-7z" />

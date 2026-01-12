@@ -54,15 +54,25 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-      {/* Glass background */}
-      <div className="absolute inset-0 glass-strong" />
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 md:hidden flex justify-center px-4"
+      style={{ paddingBottom: 'max(12px, env(safe-area-inset-bottom))' }}
+    >
+      {/* Floating pill-shaped container */}
+      <nav
+        className="
+          relative flex items-center justify-around
+          w-full max-w-xs
+          h-14 px-2
+          rounded-full
+          bg-[hsl(0_0%_8%/0.9)] backdrop-blur-xl
+          border border-[hsl(0_0%_100%/0.08)]
+          shadow-[0_8px_32px_-8px_hsl(0_0%_0%/0.6),inset_0_1px_0_0_hsl(0_0%_100%/0.04)]
+        "
+      >
+        {/* Subtle green accent line at top */}
+        <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
-      {/* Top border glow */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      {/* Nav content */}
-      <div className="relative flex items-center justify-around h-16 px-6">
         {navItems.map((item) => {
           const isActive = pathname === item.href ||
             (item.href === "/documents" && pathname.startsWith("/generate"));
@@ -71,42 +81,32 @@ export function MobileNav() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={true}
               className={`
-                flex flex-col items-center justify-center gap-1
-                w-16 h-14
-                transition-all duration-200 ease-out
-                press-scale no-select
+                flex items-center justify-center gap-2
+                h-10 rounded-full
+                transition-colors duration-150
                 ${isActive
-                  ? "text-primary"
-                  : "text-muted-foreground active:text-foreground"
+                  ? "text-primary bg-primary/10 px-4"
+                  : "text-muted-foreground w-10"
                 }
               `}
             >
               {/* Icon */}
-              <div className={`
-                transition-transform duration-200
-                ${isActive ? "scale-110" : ""}
-              `}>
+              <div className="transition-transform duration-200">
                 {isActive ? item.iconFilled : item.icon}
               </div>
 
-              {/* Label */}
-              <span className={`
-                text-[10px] font-semibold tracking-wide
-                transition-all duration-200
-              `}>
-                {item.label}
-              </span>
+              {/* Label - only shown when active */}
+              {isActive && (
+                <span className="text-xs font-semibold whitespace-nowrap">
+                  {item.label}
+                </span>
+              )}
             </Link>
           );
         })}
-      </div>
-
-      {/* Safe area spacer for iOS */}
-      <div
-        className="bg-transparent"
-        style={{ height: 'env(safe-area-inset-bottom, 0px)' }}
-      />
-    </nav>
+      </nav>
+    </div>
   );
 }
