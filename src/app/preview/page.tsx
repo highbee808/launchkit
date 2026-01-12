@@ -42,7 +42,6 @@ const documentConfig: Record<string, { label: string; filename: string }> = {
 function PreviewContent() {
   const searchParams = useSearchParams();
   const [copied, setCopied] = useState(false);
-  const [showExportSheet, setShowExportSheet] = useState(false);
 
   const company = searchParams.get("company") || "Your Company";
   const website = searchParams.get("website") || "https://example.com";
