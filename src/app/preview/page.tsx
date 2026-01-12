@@ -295,12 +295,12 @@ ${document
   };
 
   return (
-    <div className="min-h-screen py-20 px-6">
+    <div className="min-h-screen py-20 px-4 sm:px-6 overflow-x-hidden">
       {/* Background effects */}
       <div className="fixed inset-0 gradient-mesh -z-10" />
       <div className="fixed inset-0 noise -z-10" />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto overflow-hidden">
         {/* Success header */}
         <div className="text-center mb-12 animate-fade-in">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
@@ -321,31 +321,31 @@ ${document
           {/* Sidebar */}
           <div className="space-y-4 animate-fade-in delay-100">
             {/* Document info card */}
-            <div className="rounded-xl bg-card border border-border/50 p-5">
+            <div className="rounded-xl bg-card border border-border/50 p-4 sm:p-5 overflow-hidden">
               <h3 className="font-semibold mb-4 flex items-center gap-2">
                 {config.icon}
-                {config.label}
+                <span className="truncate">{config.label}</span>
               </h3>
               <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Company</span>
-                  <span className="font-medium truncate max-w-[120px]">{company}</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted-foreground shrink-0">Company</span>
+                  <span className="font-medium truncate">{company}</span>
                 </div>
                 {(docType === "privacy" || docType === "cookies") && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Data types</span>
+                  <div className="flex justify-between gap-4">
+                    <span className="text-muted-foreground shrink-0">Data types</span>
                     <span className="font-medium">{data.length}</span>
                   </div>
                 )}
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Generated</span>
+                <div className="flex justify-between gap-4">
+                  <span className="text-muted-foreground shrink-0">Generated</span>
                   <span className="font-medium">{new Date().toLocaleDateString()}</span>
                 </div>
               </div>
             </div>
 
             {/* Export options */}
-            <div className="rounded-xl bg-card border border-border/50 p-5">
+            <div className="rounded-xl bg-card border border-border/50 p-4 sm:p-5">
               <h3 className="font-semibold mb-4">Export Options</h3>
               <div className="space-y-2">
                 <Button
@@ -413,19 +413,19 @@ ${document
               <div className="absolute -top-px left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
               {/* Header bar */}
-              <div className="flex items-center gap-3 px-6 py-4 border-b border-border/50 bg-secondary/30">
+              <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 border-b border-border/50 bg-secondary/30">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-xs text-muted-foreground font-mono">{config.filename}.md</span>
+                <span className="text-xs text-muted-foreground font-mono truncate">{config.filename}.md</span>
               </div>
 
               {/* Document content */}
-              <div className="p-6 md:p-8 max-h-[600px] overflow-y-auto">
+              <div className="p-4 sm:p-6 md:p-8 max-h-[600px] overflow-y-auto overflow-x-hidden">
                 <div className="prose prose-invert prose-sm max-w-none">
-                  <div className="whitespace-pre-wrap font-mono text-sm text-muted-foreground leading-relaxed">
+                  <div className="whitespace-pre-wrap break-words font-mono text-sm text-muted-foreground leading-relaxed">
                     {document.split("\n").map((line, i) => {
                       if (line.startsWith("# ")) {
                         return (
