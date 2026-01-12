@@ -143,9 +143,9 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
       </div>
 
       {/* Form card */}
-      <div className="card-premium rounded-2xl sm:rounded-3xl p-5 sm:p-8 overflow-hidden">
+      <div className="relative card-premium rounded-2xl sm:rounded-3xl p-5 sm:p-8 overflow-hidden">
         {/* Top accent line */}
-        <div className="absolute -top-px left-6 right-6 sm:left-8 sm:right-8 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
 
         {/* Document type badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5 sm:mb-6">
@@ -318,7 +318,7 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
 
             <Button
               onClick={handleGenerate}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-all duration-300 press-scale glow-green-sm hover:glow-green"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl h-12 text-base font-semibold transition-all duration-300 press-scale"
             >
               <svg viewBox="0 0 24 24" className="w-5 h-5 mr-2" fill="currentColor">
                 <path d="M8 5.14v14l11-7z" />

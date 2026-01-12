@@ -1,18 +1,42 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export function CTASection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden">
+      {/* Top fade for smooth transition from previous section */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-10" />
+
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 gradient-mesh" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] rounded-full bg-primary/10 blur-[80px] sm:blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] rounded-full bg-primary/10 blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
+      <div className={`relative z-10 max-w-3xl mx-auto text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full glass border border-border/30 mb-4 sm:mb-6">
           <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
@@ -33,11 +57,11 @@ export function CTASection() {
         </p>
 
         {/* CTA */}
-        <div className="flex justify-center">
+        <div className={`flex justify-center transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <Link href="/documents">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-[1.02] glow-green hover:glow-green animate-pulse-glow group"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-6 sm:px-10 h-12 sm:h-14 text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 group"
             >
               <span>Start Generating Free</span>
               <svg
@@ -54,7 +78,7 @@ export function CTASection() {
         </div>
 
         {/* Trust badges */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-muted-foreground/60">
+        <div className={`flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-8 sm:mt-10 text-muted-foreground/60 transition-all duration-700 delay-300 ${isVisible ? "opacity-100" : "opacity-0"}`}>
           <div className="flex items-center gap-1.5 sm:gap-2">
             <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />

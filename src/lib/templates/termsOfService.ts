@@ -5,8 +5,17 @@ export interface TermsOfServiceParams {
   effectiveDate: string;
 }
 
+function getSafeHostname(url: string): string {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return 'example.com';
+  }
+}
+
 export function generateTermsOfService(params: TermsOfServiceParams): string {
   const { companyName, websiteUrl, email, effectiveDate } = params;
+  const hostname = getSafeHostname(websiteUrl);
 
   return `# Terms of Service
 
@@ -65,7 +74,7 @@ The Service and its original content (excluding User Content), features, and fun
 
 ### 5.2 Copyright Policy
 
-We respect the intellectual property rights of others. If you believe that any content on the Service infringes your copyright, please contact us at ${email || `legal@${new URL(websiteUrl).hostname}`}.
+We respect the intellectual property rights of others. If you believe that any content on the Service infringes your copyright, please contact us at ${email || `legal@${hostname}`}.
 
 ## 6. Third-Party Links
 
@@ -109,7 +118,7 @@ These Terms shall be governed by and construed in accordance with the laws of th
 
 ### 11.1 Informal Resolution
 
-Before filing a claim, you agree to try to resolve the dispute informally by contacting us at ${email || `legal@${new URL(websiteUrl).hostname}`}. We will try to resolve the dispute informally by contacting you via email. If a dispute is not resolved within 30 days of submission, you or ${companyName} may bring a formal proceeding.
+Before filing a claim, you agree to try to resolve the dispute informally by contacting us at ${email || `legal@${hostname}`}. We will try to resolve the dispute informally by contacting you via email. If a dispute is not resolved within 30 days of submission, you or ${companyName} may bring a formal proceeding.
 
 ### 11.2 Arbitration
 

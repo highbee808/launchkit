@@ -212,7 +212,8 @@ export default function DocumentsPage() {
           </div>
 
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-center">
-            Document Hub
+            Document{" "}
+            <span className="font-display italic text-primary">Hub</span>
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground text-center mt-2 max-w-md mx-auto">
             Generate legal documents in seconds
@@ -232,7 +233,7 @@ export default function DocumentsPage() {
                   shrink-0 px-4 py-2 rounded-full text-sm font-medium
                   transition-all duration-200 press-scale
                   ${activeCategory === category.id
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                    ? "bg-primary text-primary-foreground"
                     : "bg-secondary/50 text-muted-foreground hover:bg-secondary hover:text-foreground"
                   }
                 `}
@@ -257,10 +258,12 @@ export default function DocumentsPage() {
                   transition-all duration-300 press-scale
                   hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5
                   active:scale-[0.98]
-                  animate-fade-in-up
+                  animate-fade-in-up overflow-hidden
                 "
                 style={{ animationDelay: `${index * 50}ms` }}
               >
+                {/* Green accent glow line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 

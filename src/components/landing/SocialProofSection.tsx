@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 const stats = [
   { value: "10K+", label: "Documents Generated" },
   { value: "60s", label: "Average Time" },
@@ -8,8 +10,28 @@ const stats = [
 ];
 
 export function SocialProofSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-12 sm:py-20 md:py-28 px-4 sm:px-6 overflow-hidden">
+    <section ref={sectionRef} className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
 
@@ -19,8 +41,12 @@ export function SocialProofSection() {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-card/30 border border-border/30 backdrop-blur-sm"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-card/30 border border-border/30 backdrop-blur-sm transition-all duration-700 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display text-primary mb-1 sm:mb-2">
                 {stat.value}

@@ -72,8 +72,8 @@ export function MobileNav() {
               key={item.href}
               href={item.href}
               className={`
-                relative flex flex-col items-center justify-center gap-1
-                w-16 h-14 rounded-2xl
+                flex flex-col items-center justify-center gap-1
+                w-16 h-14
                 transition-all duration-200 ease-out
                 press-scale no-select
                 ${isActive
@@ -82,14 +82,9 @@ export function MobileNav() {
                 }
               `}
             >
-              {/* Active background pill */}
-              {isActive && (
-                <div className="absolute inset-1 rounded-xl bg-primary/10 animate-scale-in" />
-              )}
-
               {/* Icon */}
               <div className={`
-                relative z-10 transition-transform duration-200
+                transition-transform duration-200
                 ${isActive ? "scale-110" : ""}
               `}>
                 {isActive ? item.iconFilled : item.icon}
@@ -97,17 +92,11 @@ export function MobileNav() {
 
               {/* Label */}
               <span className={`
-                relative z-10 text-[10px] font-semibold tracking-wide
+                text-[10px] font-semibold tracking-wide
                 transition-all duration-200
-                ${isActive ? "text-primary" : ""}
               `}>
                 {item.label}
               </span>
-
-              {/* Active indicator dot */}
-              {isActive && (
-                <div className="absolute -bottom-0.5 w-1 h-1 rounded-full bg-primary animate-scale-in" />
-              )}
             </Link>
           );
         })}

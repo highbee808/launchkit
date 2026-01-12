@@ -219,7 +219,8 @@ ${document
               </svg>
             </div>
             <h1 className="text-3xl font-bold tracking-tight mb-2">
-              Document Ready
+              Document{" "}
+              <span className="font-display italic text-primary">Ready</span>
             </h1>
             <p className="text-muted-foreground">
               {config.label} for <span className="text-foreground font-medium">{company}</span>

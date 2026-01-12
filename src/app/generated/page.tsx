@@ -68,7 +68,8 @@ export default function GeneratedPage() {
           </div>
 
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-2 sm:mb-4">
-            Your Documents
+            Your{" "}
+            <span className="font-display italic text-primary">Documents</span>
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground">
             Auto-expires after 24 hours

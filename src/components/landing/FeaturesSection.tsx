@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 const features = [
   {
     title: "Lightning Fast",
@@ -58,8 +60,31 @@ const features = [
 ];
 
 export function FeaturesSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden">
+      {/* Top fade for smooth transition from previous section */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-10" />
+
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
 
@@ -68,7 +93,7 @@ export function FeaturesSection() {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-10 sm:mb-16 md:mb-20">
+        <div className={`text-center mb-10 sm:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium text-primary bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
             Why LaunchKit
           </span>
@@ -86,8 +111,10 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:bg-card hover:border-border hover:shadow-xl"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-500 hover:bg-card hover:border-border hover:shadow-xl ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${150 + index * 75}ms` }}
             >
               <div className="relative z-10">
                 {/* Icon */}

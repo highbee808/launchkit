@@ -5,8 +5,17 @@ export interface RefundPolicyParams {
   effectiveDate: string;
 }
 
+function getSafeHostname(url: string): string {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return 'example.com';
+  }
+}
+
 export function generateRefundPolicy(params: RefundPolicyParams): string {
   const { companyName, websiteUrl, email, effectiveDate } = params;
+  const hostname = getSafeHostname(websiteUrl);
 
   return `# Refund Policy
 
@@ -62,7 +71,7 @@ The following are NOT eligible for refunds:
 ## How to Request a Refund
 
 ### Step 1: Contact Us
-Send a refund request to ${email || `support@${new URL(websiteUrl).hostname}`} with:
+Send a refund request to ${email || `support@${hostname}`} with:
 - Your account email address
 - Date of purchase
 - Reason for refund request

@@ -18,7 +18,8 @@ function GeneratorContent() {
         {/* Page header */}
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Generate your document
+            Generate your{" "}
+            <span className="font-display italic text-primary">document</span>
           </h1>
           <p className="text-lg text-muted-foreground">
             Fill in a few details and we&apos;ll create a professional legal document for you.

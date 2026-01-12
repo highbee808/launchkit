@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 const steps = [
   {
     number: "01",
@@ -19,14 +21,37 @@ const steps = [
 ];
 
 export function HowItWorksSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="how-it-works" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden">
+    <section ref={sectionRef} id="how-it-works" className="relative py-12 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 gradient-mesh opacity-50" />
 
+      {/* Bottom fade for smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+
       <div className="relative z-10 max-w-4xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-10 sm:mb-16 md:mb-20">
+        <div className={`text-center mb-10 sm:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium text-primary bg-primary/10 border border-primary/20 mb-3 sm:mb-4">
             Simple Process
           </span>
@@ -44,11 +69,16 @@ export function HowItWorksSection() {
           {steps.map((step, index) => (
             <div
               key={step.number}
-              className="relative text-center"
+              className={`relative text-center transition-all duration-700 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${200 + index * 150}ms` }}
             >
               {/* Connector line - desktop only */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent" />
+                <div className={`hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent transition-all duration-1000 ${
+                  isVisible ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                }`} style={{ transitionDelay: `${400 + index * 200}ms`, transformOrigin: "left" }} />
               )}
 
               {/* Step number */}
