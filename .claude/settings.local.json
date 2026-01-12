@@ -20,7 +20,12 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Skill(frontend-design)"
+      "Skill(frontend-design)",
+      "Bash(timeout:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(powershell -Command \"Stop-Process -Id 19444 -Force; Stop-Process -Id 29892 -Force\")",
+      "Bash(start \"\" \"C:\\\\Users\\\\ibrah_ar9vkb8\\\\Documents\\\\projects\\\\launchkit\\\\preview-landing.html\")"
     ]
   }
 }
