@@ -262,22 +262,22 @@ export function DocumentForm({ documentType = "privacy" }: DocumentFormProps) {
               <p className="text-muted-foreground">Review your information and generate your document.</p>
             </div>
 
-            <div className="space-y-4 p-4 rounded-xl bg-secondary/30 border border-border/50">
-              <div className="flex justify-between items-center py-2 border-b border-border/50">
-                <span className="text-muted-foreground">Document</span>
-                <span className="font-medium">{documentLabels[formData.documentType]}</span>
+            <div className="space-y-4 p-4 rounded-xl bg-secondary/30 border border-border/50 overflow-hidden">
+              <div className="flex justify-between items-center gap-4 py-2 border-b border-border/50">
+                <span className="text-muted-foreground shrink-0">Document</span>
+                <span className="font-medium truncate">{documentLabels[formData.documentType]}</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-border/50">
-                <span className="text-muted-foreground">Company</span>
-                <span className="font-medium">{formData.companyName}</span>
+              <div className="flex justify-between items-center gap-4 py-2 border-b border-border/50">
+                <span className="text-muted-foreground shrink-0">Company</span>
+                <span className="font-medium truncate">{formData.companyName}</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-border/50">
-                <span className="text-muted-foreground">Website</span>
-                <span className="font-medium">{formData.websiteUrl}</span>
+              <div className="flex justify-between items-center gap-4 py-2 border-b border-border/50">
+                <span className="text-muted-foreground shrink-0">Website</span>
+                <span className="font-medium truncate">{formData.websiteUrl}</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-border/50">
-                <span className="text-muted-foreground">Contact</span>
-                <span className="font-medium">{formData.email || "Not provided"}</span>
+              <div className="flex justify-between items-center gap-4 py-2 border-b border-border/50">
+                <span className="text-muted-foreground shrink-0">Contact</span>
+                <span className="font-medium truncate">{formData.email || "Not provided"}</span>
               </div>
               {needsDataCollection && formData.dataCollected.length > 0 && (
                 <div className="flex justify-between items-start py-2">
