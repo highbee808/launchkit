@@ -53,11 +53,6 @@ const navItems = [
 export function MobileNav() {
   const pathname = usePathname();
 
-  // Don't show on preview page for cleaner document viewing
-  if (pathname.startsWith("/preview")) {
-    return null;
-  }
-
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
       {/* Glass background */}
