@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
@@ -19,12 +19,30 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#22c55e",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   title: "LaunchKit - Legal Docs Generator",
   description: "Generate privacy policies, terms of service, and legal pages in seconds. Not hours. Professional. Compliant. Actually readable.",
   keywords: ["privacy policy generator", "terms of service generator", "legal documents", "GDPR", "cookie policy"],
   authors: [{ name: "Highbee", url: "https://highbee.dev" }],
   creator: "Highbee",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "LaunchKit",
+  },
+  formatDetection: {
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

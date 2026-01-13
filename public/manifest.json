@@ -1,0 +1,24 @@
+{
+  "name": "LaunchKit - Legal Docs Generator",
+  "short_name": "LaunchKit",
+  "description": "Generate privacy policies, terms of service, and legal pages in seconds.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#22c55e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
