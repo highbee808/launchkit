@@ -307,14 +307,14 @@ export default function DocumentsPage() {
         </div>
       </div>
 
-      {/* Bottom CTA - Hidden on mobile */}
-      <div className="hidden md:block mt-16 text-center px-6">
-        <p className="text-muted-foreground mb-4">
+      {/* Bottom CTA */}
+      <div className="mt-10 md:mt-16 text-center px-6 pb-8">
+        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">
           Need a custom document? Let us know what you&apos;re looking for.
         </p>
         <Link
           href="mailto:hello@highbee.dev"
-          className="inline-flex items-center gap-2 text-primary hover:underline"
+          className="inline-flex items-center gap-2 text-sm md:text-base text-primary hover:underline"
         >
           <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
