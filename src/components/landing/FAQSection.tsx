@@ -87,7 +87,7 @@ export function FAQSection() {
         {/* FAQ Grid - Editorial layout */}
         <div className="grid lg:grid-cols-[1fr,1.2fr] gap-8 lg:gap-16">
           {/* Left: Question list */}
-          <div className="space-y-1">
+          <div className="space-y-1 accordion-fix">
             {faqs.map((faq, index) => {
               const isOpen = openIndex === index;
               const num = String(index + 1).padStart(2, "0");
@@ -142,9 +142,15 @@ export function FAQSection() {
                   </div>
 
                   {/* Mobile answer - shows inline on mobile */}
-                  <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
-                    isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                  }`}>
+                  <div
+                    className="lg:hidden overflow-hidden gpu-boost"
+                    style={{
+                      maxHeight: isOpen ? '10rem' : '0px',
+                      opacity: isOpen ? 1 : 0,
+                      transition: 'max-height 0.4s ease-out, opacity 0.3s ease-out',
+                      willChange: isOpen ? 'max-height, opacity' : 'auto',
+                    }}
+                  >
                     <p className="pt-4 pb-2 pl-12 sm:pl-16 pr-4 text-sm text-muted-foreground leading-relaxed">
                       {faq.answer}
                     </p>
