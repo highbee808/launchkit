@@ -446,3 +446,90 @@
     padding: 1rem;
   }
 }
+
+/* ===========================================
+   DESKTOP-ONLY SUBTLE EFFECT REDUCTIONS
+   These only apply on non-Safari/iOS browsers
+   Safari/iOS remains completely untouched
+   =========================================== */
+
+/* Desktop: Reduced glass morphism */
+html:not(.is-safari):not(.is-ios) .glass {
+  background: hsl(0 0% 10% / 0.85);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+html:not(.is-safari):not(.is-ios) .glass-strong {
+  background: hsl(0 0% 8% / 0.92);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+/* Desktop: Reduced backdrop blur on common elements */
+html:not(.is-safari):not(.is-ios) [class*="backdrop-blur-sm"] {
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+html:not(.is-safari):not(.is-ios) [class*="backdrop-blur-md"] {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+html:not(.is-safari):not(.is-ios) [class*="backdrop-blur-lg"] {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html:not(.is-safari):not(.is-ios) [class*="backdrop-blur-xl"] {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Desktop: Reduced glow effects */
+html:not(.is-safari):not(.is-ios) .glow-green {
+  box-shadow: 0 0 15px hsl(141 76% 48% / 0.3),
+              0 0 30px hsl(141 76% 48% / 0.15),
+              0 0 45px hsl(141 76% 48% / 0.08);
+}
+
+html:not(.is-safari):not(.is-ios) .glow-green-sm {
+  box-shadow: 0 0 8px hsl(141 76% 48% / 0.25),
+              0 0 16px hsl(141 76% 48% / 0.12);
+}
+
+/* Desktop: Reduced card shadows */
+html:not(.is-safari):not(.is-ios) .card-premium {
+  box-shadow:
+    inset 0 1px 0 0 hsl(0 0% 100% / 0.03),
+    0 3px 18px -4px hsl(0 0% 0% / 0.4);
+}
+
+/* Desktop: Reduced pulse glow animation */
+@keyframes pulse-glow-desktop {
+  0%, 100% {
+    box-shadow: 0 0 15px hsl(141 76% 48% / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 22px hsl(141 76% 48% / 0.45);
+  }
+}
+
+html:not(.is-safari):not(.is-ios) .animate-pulse-glow {
+  animation: pulse-glow-desktop 2s ease-in-out infinite;
+}
+
+/* Desktop: Slightly reduced gradient mesh intensity */
+html:not(.is-safari):not(.is-ios) .gradient-mesh {
+  background:
+    radial-gradient(at 40% 20%, hsl(141 76% 48% / 0.06) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsl(141 76% 48% / 0.04) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsl(141 76% 48% / 0.04) 0px, transparent 50%),
+    hsl(0 0% 7%);
+}
+
+/* Desktop: Reduced border gradient intensity */
+html:not(.is-safari):not(.is-ios) .border-gradient::before {
+  background: linear-gradient(135deg, hsl(141 76% 48% / 0.2), transparent 50%);
+}
