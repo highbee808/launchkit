@@ -142,19 +142,13 @@ export function FAQSection() {
                   </div>
 
                   {/* Mobile answer - shows inline on mobile */}
-                  <div
-                    className="lg:hidden overflow-hidden gpu-boost"
-                    style={{
-                      maxHeight: isOpen ? '10rem' : '0px',
-                      opacity: isOpen ? 1 : 0,
-                      transition: 'max-height 0.4s ease-out, opacity 0.3s ease-out',
-                      willChange: isOpen ? 'max-height, opacity' : 'auto',
-                    }}
-                  >
-                    <p className="pt-4 pb-2 pl-12 sm:pl-16 pr-4 text-sm text-muted-foreground leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
+                  {isOpen && (
+                    <div className="lg:hidden pt-4 pb-2 pl-12 sm:pl-16 pr-4 animate-fade-in">
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  )}
                 </button>
               );
             })}
