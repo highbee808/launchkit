@@ -2,32 +2,35 @@
  * ============================================
  * SAFARI/iOS PERFORMANCE FIX - STARTER KIT
  * ============================================
- * 
- * Copy this file to: styles/safari-performance.css
- * Import in globals.css: @import './safari-performance.css';
- * 
+ *
+ * All performance fixes are CONDITIONAL - they only apply
+ * when .is-safari or .is-ios class is on <html> element.
+ * Desktop browsers (Chrome, Firefox, Edge) render normally.
+ *
  * Usage:
  *   .gpu-boost        → Add to ANY animated element
  *   .blur-fix         → Add to elements with backdrop-blur
  *   .accordion-fix    → Add to accordion/collapsible containers
- * 
+ *
  * Author: Highbee's Starter Kit
  * ============================================
  */
 
 /* ===========================================
-   CORE: GPU ACCELERATION
+   CORE: GPU ACCELERATION - SAFARI/iOS ONLY
    Add .gpu-boost to any animated element
    =========================================== */
-.gpu-boost {
+html.is-safari .gpu-boost,
+html.is-ios .gpu-boost {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-/* With will-change for heavier animations */
-.gpu-boost-heavy {
+/* With will-change for heavier animations - SAFARI/iOS ONLY */
+html.is-safari .gpu-boost-heavy,
+html.is-ios .gpu-boost-heavy {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
@@ -36,10 +39,11 @@
 }
 
 /* ===========================================
-   BLUR FIX (Most Important!)
+   BLUR FIX - SAFARI/iOS ONLY
    Add .blur-fix to any element with backdrop-blur
    =========================================== */
-.blur-fix {
+html.is-safari .blur-fix,
+html.is-ios .blur-fix {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
@@ -48,7 +52,6 @@
 }
 
 /* Auto-fix common Tailwind blur classes - SAFARI/iOS ONLY */
-/* These rules only apply when .is-safari or .is-ios class is on <html> */
 html.is-safari .backdrop-blur,
 html.is-safari .backdrop-blur-sm,
 html.is-safari .backdrop-blur-md,
@@ -71,37 +74,46 @@ html.is-ios [class*="backdrop-blur"] {
 }
 
 /* ===========================================
-   ACCORDION/COLLAPSIBLE FIX
+   ACCORDION/COLLAPSIBLE FIX - SAFARI/iOS ONLY
    Add .accordion-fix to accordion containers
    =========================================== */
-.accordion-fix,
-[data-radix-accordion-root],
-[data-accordion] {
+html.is-safari .accordion-fix,
+html.is-safari [data-radix-accordion-root],
+html.is-safari [data-accordion],
+html.is-ios .accordion-fix,
+html.is-ios [data-radix-accordion-root],
+html.is-ios [data-accordion] {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.accordion-fix > *,
-[data-radix-accordion-item],
-[data-accordion-item] {
+html.is-safari .accordion-fix > *,
+html.is-safari [data-radix-accordion-item],
+html.is-safari [data-accordion-item],
+html.is-ios .accordion-fix > *,
+html.is-ios [data-radix-accordion-item],
+html.is-ios [data-accordion-item] {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
-[data-radix-accordion-content],
-[data-accordion-content] {
+html.is-safari [data-radix-accordion-content],
+html.is-safari [data-accordion-content],
+html.is-ios [data-radix-accordion-content],
+html.is-ios [data-accordion-content] {
   will-change: height, opacity;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
 /* ===========================================
-   SCROLL CONTAINERS
+   SCROLL CONTAINERS - SAFARI/iOS ONLY
    Add .scroll-fix to scrollable containers
    =========================================== */
-.scroll-fix {
+html.is-safari .scroll-fix,
+html.is-ios .scroll-fix {
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -110,7 +122,6 @@ html.is-ios [class*="backdrop-blur"] {
 /* ===========================================
    SAFARI-ONLY STYLES
    These only apply when .is-safari is on <html>
-   (Set by the safariDetect script)
    =========================================== */
 html.is-safari .safari-only-gpu {
   -webkit-transform: translate3d(0, 0, 0);
@@ -124,7 +135,8 @@ html.is-ios .ios-faster {
 }
 
 /* ===========================================
-   UTILITY CLASSES
+   UTILITY CLASSES (These remain global as they
+   are intentionally opt-in for specific use cases)
    =========================================== */
 .isolate {
   isolation: isolate;
