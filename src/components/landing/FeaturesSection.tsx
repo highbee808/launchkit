@@ -111,7 +111,7 @@ export function FeaturesSection() {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className={`group relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-500 hover:bg-card hover:border-border hover:shadow-xl ${
+              className={`group relative p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-card/50 border border-border/50 backdrop-blur-sm blur-fix gpu-boost transition-all duration-500 hover:bg-card hover:border-border hover:shadow-xl ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${150 + index * 75}ms` }}

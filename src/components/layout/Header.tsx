@@ -36,7 +36,7 @@ export function Header() {
         className="
           relative flex items-center gap-8 px-2 py-2
           rounded-full
-          bg-[hsl(0_0%_8%/0.9)] backdrop-blur-md
+          bg-[hsl(0_0%_8%/0.9)] backdrop-blur-md blur-fix
           border border-[hsl(0_0%_100%/0.08)]
           shadow-[0_4px_20px_-4px_hsl(0_0%_0%/0.4)]
         "

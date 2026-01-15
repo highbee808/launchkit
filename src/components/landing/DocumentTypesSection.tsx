@@ -185,7 +185,7 @@ export function DocumentTypesSection() {
               className="group"
             >
               <div
-                className="relative p-4 sm:p-5 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:bg-card hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
+                className="relative p-4 sm:p-5 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm blur-fix gpu-boost transition-all duration-300 hover:bg-card hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 {/* Category badge */}

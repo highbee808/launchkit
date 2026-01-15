@@ -65,7 +65,7 @@ export function MobileNav() {
           w-full max-w-xs
           h-14 px-2
           rounded-full
-          bg-[hsl(0_0%_8%/0.9)] backdrop-blur-xl
+          bg-[hsl(0_0%_8%/0.9)] backdrop-blur-xl blur-fix
           border border-[hsl(0_0%_100%/0.08)]
           shadow-[0_8px_32px_-8px_hsl(0_0%_0%/0.6),inset_0_1px_0_0_hsl(0_0%_100%/0.04)]
         "

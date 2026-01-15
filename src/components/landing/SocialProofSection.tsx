@@ -41,7 +41,7 @@ export function SocialProofSection() {
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className={`text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-card/30 border border-border/30 backdrop-blur-sm transition-all duration-700 ${
+              className={`text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-card/30 border border-border/30 backdrop-blur-sm blur-fix transition-all duration-700 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"

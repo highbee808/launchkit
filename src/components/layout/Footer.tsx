@@ -42,7 +42,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-sm">
+    <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-sm blur-fix">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo & Credit */}

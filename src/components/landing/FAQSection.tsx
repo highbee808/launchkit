@@ -160,7 +160,7 @@ export function FAQSection() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`} style={{ transitionDelay: "400ms" }}>
               {/* Answer card */}
-              <div className="relative p-8 xl:p-10 rounded-2xl bg-card/40 border border-border/30 backdrop-blur-sm">
+              <div className="relative p-8 xl:p-10 rounded-2xl bg-card/40 border border-border/30 backdrop-blur-sm blur-fix">
                 {/* Decorative corner accent */}
                 <div className="absolute top-0 right-0 w-20 h-20 overflow-hidden rounded-tr-2xl">
                   <div className="absolute top-3 right-3 w-12 h-12 border-t border-r border-primary/20" />

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { SafariInit } from "@/components/SafariInit";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${instrumentSerif.variable}`}>
       <body className="min-h-screen bg-background antialiased flex flex-col">
+        <SafariInit />
         <Header />
         <main className="flex-1 pb-20 md:pb-0">
           {children}

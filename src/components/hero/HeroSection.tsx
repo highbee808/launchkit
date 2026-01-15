@@ -25,9 +25,9 @@ export function HeroSection() {
       {/* Content */}
       <div className="relative z-10 w-full max-w-4xl mx-auto text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50 mb-6 sm:mb-8 animate-fade-in">
+        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-secondary/50 backdrop-blur-sm blur-fix border border-border/50 mb-6 sm:mb-8 animate-fade-in">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 gpu-boost"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           <span className="text-xs sm:text-sm text-muted-foreground">Free to use. No signup required.</span>
@@ -63,8 +63,8 @@ export function HeroSection() {
       </div>
 
       {/* Preview card */}
-      <div className="relative z-10 mt-10 sm:mt-16 w-full max-w-4xl mx-auto animate-slide-up delay-400 px-4 sm:px-0">
-        <div className="relative rounded-xl sm:rounded-2xl bg-card border border-border/50 p-4 sm:p-6 backdrop-blur-sm overflow-hidden">
+      <div className="relative z-10 mt-10 sm:mt-16 w-full max-w-4xl mx-auto animate-slide-up gpu-boost delay-400 px-4 sm:px-0">
+        <div className="relative rounded-xl sm:rounded-2xl bg-card border border-border/50 p-4 sm:p-6 backdrop-blur-sm blur-fix overflow-hidden">
           {/* Green accent glow */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
 

@@ -201,11 +201,11 @@ export default function DocumentsPage() {
       <div className="fixed inset-0 gradient-mesh -z-10" />
 
       {/* Header - Sticky on mobile */}
-      <div className="sticky top-0 z-40 pt-6 pb-4 px-4 sm:px-6 bg-background/80 backdrop-blur-xl border-b border-border/50 md:relative md:bg-transparent md:backdrop-blur-none md:border-none md:pt-20">
+      <div className="sticky top-0 z-40 pt-6 pb-4 px-4 sm:px-6 bg-background/80 backdrop-blur-xl blur-fix border-b border-border/50 md:relative md:bg-transparent md:backdrop-blur-none md:border-none md:pt-20">
         <div className="max-w-6xl mx-auto">
           {/* Badge - Hidden on mobile for cleaner look */}
           <div className="hidden sm:flex justify-center mb-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 backdrop-blur-sm border border-border/50">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 backdrop-blur-sm blur-fix border border-border/50">
               <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
               <span className="text-xs text-muted-foreground">15 documents</span>
             </div>
@@ -255,7 +255,7 @@ export default function DocumentsPage() {
                 href={`/generate?type=${doc.id}`}
                 className="
                   group relative card-premium rounded-2xl p-4 sm:p-5
-                  transition-all duration-300 press-scale
+                  transition-all duration-300 press-scale gpu-boost
                   hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5
                   active:scale-[0.98]
                   animate-fade-in-up overflow-hidden

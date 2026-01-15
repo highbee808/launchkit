@@ -15,7 +15,7 @@ export function DocumentCard({ id, title, description, icon, delay = 0 }: Docume
   return (
     <Link href={`/generate?type=${id}`}>
       <div
-        className="group relative p-5 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:bg-card hover:border-primary/30 hover:scale-[1.02] cursor-pointer"
+        className="group relative p-5 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm blur-fix gpu-boost transition-all duration-300 hover:bg-card hover:border-primary/30 hover:scale-[1.02] cursor-pointer"
         style={{ animationDelay: `${delay}ms` }}
       >
         {/* Hover glow effect */}
