@@ -5,6 +5,7 @@ import { Suspense, useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { saveDocument } from "@/lib/documentHistory";
+import { renderInlineMarkdown, renderInlineMarkdownHTML } from "@/lib/markdown";
 import { generatePrivacyPolicy } from "@/lib/templates/privacyPolicy";
 import { generateTermsOfService } from "@/lib/templates/termsOfService";
 import { generateAcceptableUsePolicy } from "@/lib/templates/acceptableUse";
@@ -20,6 +21,22 @@ import { generateDpa } from "@/lib/templates/dpa";
 import { generateCcpaNotice } from "@/lib/templates/ccpaNotice";
 import { generateCoppaPolicy } from "@/lib/templates/coppaPolicy";
 import { generateDataRetention } from "@/lib/templates/dataRetention";
+import { generateEula } from "@/lib/templates/eula";
+import { generateApiTerms } from "@/lib/templates/apiTerms";
+import { generateSecurityPolicy } from "@/lib/templates/securityPolicy";
+import { generateOpenSourceLicense } from "@/lib/templates/openSourceLicense";
+import { generateShippingPolicy } from "@/lib/templates/shippingPolicy";
+import { generateReturnPolicy } from "@/lib/templates/returnPolicy";
+import { generateWarrantyPolicy } from "@/lib/templates/warrantyPolicy";
+import { generateAffiliateAgreement } from "@/lib/templates/affiliateAgreement";
+import { generateCommunityGuidelines } from "@/lib/templates/communityGuidelines";
+import { generateSocialMediaPolicy } from "@/lib/templates/socialMediaPolicy";
+import { generateContentPolicy } from "@/lib/templates/contentPolicy";
+import { generateAntiSpamPolicy } from "@/lib/templates/antiSpamPolicy";
+import { generateFreelancerAgreement } from "@/lib/templates/freelancerAgreement";
+import { generateEmployeeHandbook } from "@/lib/templates/employeeHandbook";
+import { generateConsultingAgreement } from "@/lib/templates/consultingAgreement";
+import { generateIpAssignment } from "@/lib/templates/ipAssignment";
 
 const documentConfig: Record<string, { label: string; filename: string }> = {
   privacy: { label: "Privacy Policy", filename: "privacy-policy" },
@@ -37,6 +54,22 @@ const documentConfig: Record<string, { label: string; filename: string }> = {
   ccpa: { label: "CCPA Notice", filename: "ccpa-notice" },
   coppa: { label: "COPPA Policy", filename: "coppa-policy" },
   dataretention: { label: "Data Retention Policy", filename: "data-retention-policy" },
+  eula: { label: "EULA", filename: "eula" },
+  apiterms: { label: "API Terms of Use", filename: "api-terms-of-use" },
+  security: { label: "Security Policy", filename: "security-policy" },
+  opensource: { label: "Open Source License", filename: "open-source-license" },
+  shipping: { label: "Shipping Policy", filename: "shipping-policy" },
+  returns: { label: "Return & Exchange Policy", filename: "return-exchange-policy" },
+  warranty: { label: "Warranty Policy", filename: "warranty-policy" },
+  affiliate: { label: "Affiliate Agreement", filename: "affiliate-agreement" },
+  community: { label: "Community Guidelines", filename: "community-guidelines" },
+  socialmedia: { label: "Social Media Policy", filename: "social-media-policy" },
+  content: { label: "Content Policy", filename: "content-policy" },
+  antispam: { label: "Anti-Spam Policy", filename: "anti-spam-policy" },
+  freelancer: { label: "Freelancer Agreement", filename: "freelancer-agreement" },
+  handbook: { label: "Employee Handbook", filename: "employee-handbook" },
+  consulting: { label: "Consulting Agreement", filename: "consulting-agreement" },
+  ipassignment: { label: "IP Assignment", filename: "ip-assignment" },
 };
 
 function PreviewContent() {
@@ -93,6 +126,38 @@ function PreviewContent() {
         return generateCoppaPolicy(baseParams);
       case "dataretention":
         return generateDataRetention(baseParams);
+      case "eula":
+        return generateEula(baseParams);
+      case "apiterms":
+        return generateApiTerms(baseParams);
+      case "security":
+        return generateSecurityPolicy(baseParams);
+      case "opensource":
+        return generateOpenSourceLicense(baseParams);
+      case "shipping":
+        return generateShippingPolicy(baseParams);
+      case "returns":
+        return generateReturnPolicy(baseParams);
+      case "warranty":
+        return generateWarrantyPolicy(baseParams);
+      case "affiliate":
+        return generateAffiliateAgreement(baseParams);
+      case "community":
+        return generateCommunityGuidelines(baseParams);
+      case "socialmedia":
+        return generateSocialMediaPolicy(baseParams);
+      case "content":
+        return generateContentPolicy(baseParams);
+      case "antispam":
+        return generateAntiSpamPolicy(baseParams);
+      case "freelancer":
+        return generateFreelancerAgreement(baseParams);
+      case "handbook":
+        return generateEmployeeHandbook(baseParams);
+      case "consulting":
+        return generateConsultingAgreement(baseParams);
+      case "ipassignment":
+        return generateIpAssignment(baseParams);
       case "privacy":
       default:
         return generatePrivacyPolicy({ ...baseParams, dataCollected: data });
@@ -145,23 +210,33 @@ function PreviewContent() {
     h1 { color: #111; border-bottom: 3px solid #1DB954; padding-bottom: 12px; margin-bottom: 24px; }
     h2 { color: #222; margin-top: 36px; padding-top: 16px; border-top: 1px solid #eee; }
     h3 { color: #444; margin-top: 24px; }
-    ul { padding-left: 24px; }
+    ul, ol { padding-left: 24px; }
     li { margin: 10px 0; }
     p { margin: 16px 0; }
     strong { color: #111; }
+    code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+    a { color: #1DB954; text-decoration: underline; }
   </style>
 </head>
 <body>
 ${document
-  .replace(/^# (.+)$/gm, "<h1>$1</h1>")
-  .replace(/^## (.+)$/gm, "<h2>$1</h2>")
-  .replace(/^### (.+)$/gm, "<h3>$1</h3>")
-  .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-  .replace(/^- (.+)$/gm, "<li>$1</li>")
-  .replace(/(<li>.*<\/li>\n?)+/g, (match) => `<ul>${match}</ul>`)
-  .replace(/^(?!<[hul]|<li)(.+)$/gm, "<p>$1</p>")
-  .replace(/<p>---<\/p>/g, "<hr>")
-  .replace(/<p>\s*<\/p>/g, "")}
+  .split("\n")
+  .map((line: string) => {
+    if (line.startsWith("# ")) return `<h1>${renderInlineMarkdownHTML(line.slice(2))}</h1>`;
+    if (line.startsWith("## ")) return `<h2>${renderInlineMarkdownHTML(line.slice(3))}</h2>`;
+    if (line.startsWith("### ")) return `<h3>${renderInlineMarkdownHTML(line.slice(4))}</h3>`;
+    if (line.startsWith("- ")) return `<ul-item><li>${renderInlineMarkdownHTML(line.slice(2))}</li></ul-item>`;
+    if (/^\d+\.\s/.test(line)) {
+      const m = line.match(/^\d+\.\s(.+)$/);
+      return m ? `<ol-item><li>${renderInlineMarkdownHTML(m[1])}</li></ol-item>` : `<p>${renderInlineMarkdownHTML(line)}</p>`;
+    }
+    if (line.startsWith("---")) return "<hr>";
+    if (line.trim() === "") return "";
+    return `<p>${renderInlineMarkdownHTML(line)}</p>`;
+  })
+  .join("\n")
+  .replace(/(<ul-item><li>.*?<\/li><\/ul-item>\n?)+/g, (match: string) => `<ul>${match.replace(/<\/?ul-item>/g, "")}</ul>`)
+  .replace(/(<ol-item><li>.*?<\/li><\/ol-item>\n?)+/g, (match: string) => `<ol>${match.replace(/<\/?ol-item>/g, "")}</ol>`)}
 </body>
 </html>`;
     const blob = new Blob([htmlContent], { type: "text/html" });
@@ -316,21 +391,21 @@ ${document
                       if (line.startsWith("# ")) {
                         return (
                           <h1 key={i} className="text-xl sm:text-2xl font-bold text-foreground mb-4 mt-0 leading-tight">
-                            {line.replace("# ", "")}
+                            {renderInlineMarkdown(line.replace("# ", ""))}
                           </h1>
                         );
                       }
                       if (line.startsWith("## ")) {
                         return (
                           <h2 key={i} className="text-base sm:text-lg font-semibold text-foreground mt-6 mb-3 leading-tight">
-                            {line.replace("## ", "")}
+                            {renderInlineMarkdown(line.replace("## ", ""))}
                           </h2>
                         );
                       }
                       if (line.startsWith("### ")) {
                         return (
                           <h3 key={i} className="text-sm sm:text-base font-semibold text-foreground/90 mt-4 mb-2 leading-tight">
-                            {line.replace("### ", "")}
+                            {renderInlineMarkdown(line.replace("### ", ""))}
                           </h3>
                         );
                       }
@@ -345,9 +420,20 @@ ${document
                         return (
                           <div key={i} className="flex gap-2 ml-2 sm:ml-4 mb-1 text-sm text-muted-foreground">
                             <span className="text-primary shrink-0">•</span>
-                            <span>{line.replace("- ", "")}</span>
+                            <span>{renderInlineMarkdown(line.replace("- ", ""))}</span>
                           </div>
                         );
+                      }
+                      if (/^\d+\.\s/.test(line)) {
+                        const match = line.match(/^(\d+)\.\s(.+)$/);
+                        if (match) {
+                          return (
+                            <div key={i} className="flex gap-2 ml-2 sm:ml-4 mb-1 text-sm text-muted-foreground">
+                              <span className="text-primary shrink-0 font-medium">{match[1]}.</span>
+                              <span>{renderInlineMarkdown(match[2])}</span>
+                            </div>
+                          );
+                        }
                       }
                       if (line.startsWith("---")) {
                         return <hr key={i} className="border-border/30 my-6" />;
@@ -368,7 +454,7 @@ ${document
                       }
                       return line ? (
                         <p key={i} className="text-sm text-muted-foreground leading-relaxed mb-2">
-                          {line}
+                          {renderInlineMarkdown(line)}
                         </p>
                       ) : (
                         <div key={i} className="h-2" />

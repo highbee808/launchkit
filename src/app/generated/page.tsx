@@ -21,6 +21,22 @@ const documentLabels: Record<string, string> = {
   ccpa: "CCPA Notice",
   coppa: "COPPA Policy",
   dataretention: "Data Retention",
+  eula: "EULA",
+  apiterms: "API Terms",
+  security: "Security Policy",
+  opensource: "Open Source License",
+  shipping: "Shipping Policy",
+  returns: "Return Policy",
+  warranty: "Warranty Policy",
+  affiliate: "Affiliate Agreement",
+  community: "Community Guidelines",
+  socialmedia: "Social Media Policy",
+  content: "Content Policy",
+  antispam: "Anti-Spam Policy",
+  freelancer: "Freelancer Agreement",
+  handbook: "Employee Handbook",
+  consulting: "Consulting Agreement",
+  ipassignment: "IP Assignment",
 };
 
 export default function GeneratedPage() {

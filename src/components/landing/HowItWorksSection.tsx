@@ -6,7 +6,7 @@ const steps = [
   {
     number: "01",
     title: "Choose your document",
-    description: "Select from 15+ legal document templates.",
+    description: "Select from 30+ legal document templates.",
   },
   {
     number: "02",

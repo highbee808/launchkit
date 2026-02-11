@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const stats = [
   { value: "10K+", label: "Documents Generated" },
   { value: "60s", label: "Average Time" },
-  { value: "15+", label: "Templates" },
+  { value: "30+", label: "Templates" },
   { value: "100%", label: "Free Forever" },
 ];
 
