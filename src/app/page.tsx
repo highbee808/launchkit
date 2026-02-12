@@ -3,6 +3,7 @@ import {
   FeaturesSection,
   HowItWorksSection,
   SocialProofSection,
+  TestimonialsSection,
   FAQSection,
   CTASection,
 } from "@/components/landing";
@@ -14,6 +15,7 @@ export default function Home() {
       <SocialProofSection />
       <FeaturesSection />
       <HowItWorksSection />
+      <TestimonialsSection />
       <FAQSection />
       <CTASection />
     </main>
